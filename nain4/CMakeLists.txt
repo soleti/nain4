@@ -70,11 +70,11 @@ add_executable(nain4-tests ${ALL_TEST_SOURCES})
 
 
 target_link_libraries(
-  nain4-tests
+  Nain4
   PUBLIC
+  nain4-tests
   Catch2::Catch2
   ${Geant4_LIBRARIES}
-  Nain4
 )
 
 target_include_directories(
