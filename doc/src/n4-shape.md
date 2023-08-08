@@ -435,8 +435,29 @@ G4Tubs* wedge = n4::tubs("wedge").r(1*m).z(2*m).phi_start(20*deg).phi_end(30*deg
 
 See the sections about setting [Cartesian lengths](#cartesian-lengths), [radial lengths](#radial-length-r) and [azimuthal angles](#azimuthal-angle-φ) for more details.
 
-
 ### `n4::trd`
+
+Constructs `G4Trd`: trapezoid with. Within its frame of reference, the x and y dimensions vary along the z direction and the trapezoid's mid-lengths coincide at the origin. Displacements and rotations can be applied with [`.place(material)`](#placing-a-volume).
+
+#### Methods
+
+##### Full-length methods
+
+
++ `x1(lx1)`,`y1(ly1)`: set the x/y lengths at `- half_z`. // TODO check whether it is + or - half_z
++ `x2(lx2)`,`y2(ly2)`: set the x/y lengths at `+ half_z`.
++ `z (lz )`
++ `xy1(l1)`: set the size of a square face at `- half_z`.
++ `xy2(l2)`: set the size of a square face at `+ half_z`.
+
+##### Half-length methods
+
+All the aforementioned full-length methods have alternatives which accept half-lengths: `half_x1(lx1/2)`, `half_z(lz/2)`, `half_xy1(/1)`
+
+See the sections about setting [Cartesian lengths](#cartesian-lengths) for more details.
+
+
+
 ### `n4::cons`
 
 ## Obviously missing shapes
