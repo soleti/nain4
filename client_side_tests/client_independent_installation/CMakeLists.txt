@@ -13,10 +13,6 @@ include(${Geant4_USE_FILE})
 add_executable(client_exe main.cc)
 
 if(APPLE)
-    target_link_options(Nain4 PRIVATE -undefined dynamic_lookup)
-endif()
-
-if(APPLE)
     target_link_options(client_exe PRIVATE -undefined dynamic_lookup)
 endif()
 
