@@ -22,6 +22,22 @@
           enableRaytracerX11   = false;
         });
 
+        clang_16 = if pkgs.stdenv.isDarwin
+          then pkgs.llvmPackages_16.clang.override rec {
+            libc = pkgs.darwin.apple_sdk.Libsystem;
+            bintools = pkgs.bintools.override { inherit libc; };
+            inherit (pkgs.llvmPackages) libcxx;
+            extraPackages = [
+              pkgs.llvmPackages.libcxxabi
+              # Use the compiler-rt associated with clang, but use the libc++abi from the stdenv
+              # to avoid linking against two different versions (for the same reasons as above).
+              (pkgs.llvmPackages_16.compiler-rt.override {
+                inherit (pkgs.llvmPackages) libcxxabi;
+              })
+            ];
+          }
+          else pkgs.llvmPackages.clang;
+
         my-packages = with pkgs; [
           my-geant4
           geant4.data.G4PhotonEvaporation
